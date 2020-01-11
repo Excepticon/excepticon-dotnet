@@ -1,7 +1,22 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp3.0</TargetFramework>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <PackageId>Excepticon.AspNetCore</PackageId>
+    <Version>1.0.0-beta1</Version>
+    <Authors>Jon Blankenship</Authors>
+    <Company>Excepticon</Company>
+    <Title>Excepticon.AspNetCore</Title>
+    <Description>Official ASP.NET client library for Excepticon, the beautifully simple exception montior for .NET.</Description>
+    <PackageProjectUrl>https://excepticon.io</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/Excepticon/excepticon-dotnet</RepositoryUrl>
+    <PackageTags>Excepticon, Exception-Handling, Error-Reporting, Crash-Reporting, AspNetCore</PackageTags>
+    <ApplicationIcon />
+    <StartupObject />
+    <Copyright />
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
   </PropertyGroup>
 
   <ItemGroup>
