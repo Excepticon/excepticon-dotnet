@@ -9,7 +9,7 @@ Excepticon SDK for .NET
 
 ## About
 
-[Excepticon](https://excepticon.io) is a simple, no-bloat exception monitoring service for .NET applications and services.  This repository contains the client-side libraries for integrating your .NET applications and services with Excepticon.
+[Excepticon](https://excepticon.io) is an exception monitoring service for .NET applications and services.  This repository contains the client-side libraries for integrating your .NET applications and services with Excepticon.
 
 ## Documentation
 
