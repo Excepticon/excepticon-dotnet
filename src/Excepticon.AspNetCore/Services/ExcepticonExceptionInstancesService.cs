@@ -26,7 +26,7 @@ namespace Excepticon.AspNetCore.Services
             var content = new StringContent(JsonConvert.SerializeObject(exceptionInstance));
             content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
             content.Headers.Add(CustomHeaders.ExcepticonApiKey, new[] { excepticonApiKey });
-            await _httpClient.PostAsync("exceptions", content);
+            var result = await _httpClient.PostAsync("exceptions", content);
         }
     }
 }
