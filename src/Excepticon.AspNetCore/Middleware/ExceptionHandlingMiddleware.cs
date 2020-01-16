@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Threading.Tasks;
-using Excepticon.AspNetCore.Model;
 using Excepticon.AspNetCore.Options;
-using Excepticon.AspNetCore.Services;
+using Excepticon.Model;
+using Excepticon.Options;
+using Excepticon.Services;
 using Microsoft.AspNetCore.Http;
 
 namespace Excepticon.AspNetCore.Middleware

@@ -3,10 +3,10 @@ using System.Collections.Concurrent;
 using System.Diagnostics;
 using System.Threading;
 using System.Threading.Tasks;
-using Excepticon.AspNetCore.Model;
-using Excepticon.AspNetCore.Options;
+using Excepticon.Model;
+using Excepticon.Options;
 
-namespace Excepticon.AspNetCore.Services
+namespace Excepticon.Services
 {
     public class BackgroundWorker : IBackgroundWorker, IDisposable
     {

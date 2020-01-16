@@ -1,6 +1,6 @@
 ﻿using System.Reflection;
 
-namespace Excepticon.AspNetCore.Model
+namespace Excepticon.Model
 {
     public class TargetSite
     {

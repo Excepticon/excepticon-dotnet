@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
-using Excepticon.AspNetCore.Model;
+using Excepticon.Model;
 
-namespace Excepticon.AspNetCore.Services
+namespace Excepticon.Services
 {
     public interface IExcepticonExceptionInstancesService
     {

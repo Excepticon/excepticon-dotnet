@@ -2,12 +2,12 @@
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
-using Excepticon.AspNetCore.Constants;
-using Excepticon.AspNetCore.Model;
-using Excepticon.AspNetCore.Options;
+using Excepticon.Constants;
+using Excepticon.Model;
+using Excepticon.Options;
 using Newtonsoft.Json;
 
-namespace Excepticon.AspNetCore.Services
+namespace Excepticon.Services
 {
     public class ExcepticonExceptionInstancesService : IExcepticonExceptionInstancesService
     {

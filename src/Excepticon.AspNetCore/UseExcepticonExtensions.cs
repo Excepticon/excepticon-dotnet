@@ -1,5 +1,6 @@
 ﻿using Excepticon.AspNetCore.Middleware;
 using Excepticon.AspNetCore.Options;
+using Excepticon.Options;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;

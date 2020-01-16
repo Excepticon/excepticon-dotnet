@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Runtime.ExceptionServices;
 using System.Threading.Tasks;
-using Excepticon.AspNetCore.Model;
 using Excepticon.AspNetCore.Options;
-using Excepticon.AspNetCore.Services;
+using Excepticon.Model;
+using Excepticon.Options;
+using Excepticon.Services;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;

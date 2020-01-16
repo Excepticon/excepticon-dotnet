@@ -1,6 +1,7 @@
 ﻿using System;
 using Excepticon.AspNetCore.Options;
-using Excepticon.AspNetCore.Services;
+using Excepticon.Options;
+using Excepticon.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;

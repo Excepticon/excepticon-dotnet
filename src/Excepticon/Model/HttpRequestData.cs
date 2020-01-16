@@ -3,7 +3,7 @@ using System.Linq;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.Features;
 
-namespace Excepticon.AspNetCore.Model
+namespace Excepticon.Model
 {
     public class HttpRequestData
     {
@@ -11,13 +11,13 @@ namespace Excepticon.AspNetCore.Model
         {
             var request = context.Request;
 
-            Cookies = request.Cookies.Select(c => new { c.Key, c.Value }).ToDictionary(x => x.Key, x => x.Value);
-            Headers = request.Headers.Select(h => new { h.Key, h.Value }).ToDictionary(x => x.Key, x => x.Value.ToString());
+            Cookies = Enumerable.Select(request.Cookies, c => new { c.Key, c.Value }).ToDictionary(x => x.Key, x => x.Value);
+            Headers = Enumerable.Select(request.Headers, h => new { h.Key, h.Value }).ToDictionary(x => x.Key, x => x.Value.ToString());
             Host = request.Host.Value;
             Method = request.Method;
             Path = request.Path;
             Protocol = request.Protocol;
-            Query = request.Query.Select(q => new { q.Key, q.Value }).ToDictionary(x => x.Key, x => x.Value.ToString());
+            Query = Enumerable.Select(request.Query, q => new { q.Key, q.Value }).ToDictionary(x => x.Key, x => x.Value.ToString());
             QueryString = request.QueryString.HasValue? request.QueryString.Value : string.Empty;
             Scheme = request.Scheme;
 

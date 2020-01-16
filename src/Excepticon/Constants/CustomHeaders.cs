@@ -1,4 +1,4 @@
-﻿namespace Excepticon.AspNetCore.Constants
+﻿namespace Excepticon.Constants
 {
     public static class CustomHeaders
     {

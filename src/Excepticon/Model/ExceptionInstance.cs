@@ -1,7 +1,7 @@
-﻿using System;
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 
-namespace Excepticon.AspNetCore.Model
+namespace Excepticon.Model
 {
     public class ExceptionInstance
     {
@@ -34,10 +34,10 @@ namespace Excepticon.AspNetCore.Model
 
         public DateTimeOffset TimeOccurred { get; set; }
 
-        public HttpRequestData HttpRequest { get; set; }
-
         public EnvironmentData Environment { get; set; }
 
         public TargetSite TargetSite { get; set; }
+
+        public HttpRequestData HttpRequest { get; set; }
     }
 }

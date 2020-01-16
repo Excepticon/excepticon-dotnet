@@ -1,4 +1,5 @@
 ﻿using Excepticon.AspNetCore.Options;
+using Excepticon.Options;
 using Microsoft.Extensions.Logging.Configuration;
 using Microsoft.Extensions.Options;
 
