@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <PackageId>Excepticon.AspNetCore</PackageId>
-    <Version>1.0.0-beta1</Version>
+    <Version>1.0.1-beta1</Version>
     <Authors>Jon Blankenship</Authors>
     <Company>Excepticon</Company>
     <Title>Excepticon.AspNetCore</Title>
@@ -13,7 +13,7 @@
     <PackageTags>Excepticon, Exception-Handling, Error-Reporting, Crash-Reporting, AspNetCore</PackageTags>
     <ApplicationIcon />
     <StartupObject />
-    <Copyright />
+    <Copyright>© 2020 Dynapptic, LLC, All Rights Reserved</Copyright>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>

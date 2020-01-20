@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Runtime.ExceptionServices;
 using System.Threading.Tasks;
-using Excepticon.AspNetCore.Options;
 using Excepticon.Model;
 using Excepticon.Options;
 using Excepticon.Services;
