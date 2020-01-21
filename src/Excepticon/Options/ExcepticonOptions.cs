@@ -32,7 +32,7 @@ namespace Excepticon.Options
 
         public TimeSpan FlushTimeout { get; } = new TimeSpan(0, 0, 0, 60);
 
-        public string Url { get; set; } = "https://api.excepticon.io/";
+        public string Url { get; set; } = "http://localhost:7071/"; // "https://api.excepticon.io/";
 
         internal List<ISdkIntegration> Integrations { get; set; }
     }

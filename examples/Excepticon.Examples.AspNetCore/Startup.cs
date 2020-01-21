@@ -27,7 +27,7 @@ namespace Excepticon.Examples.AspNetCore
             // Add Excepticon to the specified IServiceCollection
 
             // Option 1 - Provide apiKey directly
-            services.AddExcepticon("{Your ApiKey Here}");
+            services.AddExcepticon("F1LU529+F8JSJYXnQMvBd3OGuncqzhlRVT0zLK7/FC8=");
 
             // Option 2 - Provide IConfiguration
             //            Looks for a section named "Excepticon" in the registered configuration providers.
