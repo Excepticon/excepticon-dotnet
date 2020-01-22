@@ -1,4 +1,4 @@
-﻿using Excepticon.AspNetCore.Logging;
+﻿using Excepticon.Logging;
 using Excepticon.Options;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Logging.Configuration;

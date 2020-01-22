@@ -1,6 +1,7 @@
 ﻿using System;
-using Excepticon.AspNetCore.Logging;
 using Excepticon.AspNetCore.Options;
+using Excepticon.Extensions;
+using Excepticon.Logging;
 using Excepticon.Options;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;

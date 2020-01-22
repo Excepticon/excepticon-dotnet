@@ -1,11 +1,10 @@
 ﻿using System;
-using Excepticon.AspNetCore.Options;
 using Excepticon.Options;
 using Excepticon.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 
-namespace Excepticon.AspNetCore.Logging
+namespace Excepticon.Logging
 {
     [ProviderAlias("Excepticon")]
     public class ExcepticonLoggerProvider : ILoggerProvider

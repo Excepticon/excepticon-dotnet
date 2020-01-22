@@ -10,7 +10,10 @@ namespace Excepticon.Model
     {
         public EnvironmentData(HttpContext context) : this()
         {
-            AspNetCoreFeatures = context.Features.Select(f => f.Key.FullName).ToList();
+            if (context != null)
+            {
+                AspNetCoreFeatures = context.Features.Select(f => f.Key.FullName).ToList();
+            }
         }
 
         public EnvironmentData()

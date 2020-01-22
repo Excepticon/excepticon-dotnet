@@ -1,12 +1,11 @@
 ﻿using System;
-using Excepticon.AspNetCore.Options;
 using Excepticon.Model;
 using Excepticon.Options;
 using Excepticon.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 
-namespace Excepticon.AspNetCore.Logging
+namespace Excepticon.Logging
 {
     internal sealed class ExcepticonLogger : ILogger
     {
@@ -45,9 +44,14 @@ namespace Excepticon.AspNetCore.Logging
         {
             if (exception != null)
             {
-                var exceptionInstance = new ExceptionInstance(exception, _httpContextAccessor.HttpContext);
-                _excepticonClient.CaptureException(exceptionInstance);
+                Log(exception);
             }
+        }
+
+        public void Log(Exception exception)
+        {
+            var exceptionInstance = new ExceptionInstance(exception, _httpContextAccessor.HttpContext);
+            _excepticonClient.CaptureException(exceptionInstance);
         }
     }
 }

@@ -1,9 +1,8 @@
-﻿using Excepticon.AspNetCore.Options;
-using Excepticon.Options;
+﻿using Excepticon.Options;
 using Microsoft.Extensions.Logging.Configuration;
 using Microsoft.Extensions.Options;
 
-namespace Excepticon.AspNetCore.Logging
+namespace Excepticon.Logging
 {
     internal class ExcepticonLoggingOptionsSetup : ConfigureFromConfigurationOptions<ExcepticonOptions>
     {

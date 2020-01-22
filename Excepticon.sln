@@ -5,13 +5,15 @@ VisualStudioVersion = 16.0.29521.150
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Excepticon.AspNetCore", "src\Excepticon.AspNetCore\Excepticon.AspNetCore.csproj", "{AF9FA5D1-4523-4A4C-AEE5-9C22EB5A1376}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TestClients", "TestClients", "{85EC30B1-1D35-44FB-A73A-74880B6648DC}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Examples", "Examples", "{85EC30B1-1D35-44FB-A73A-74880B6648DC}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Excepticon", "src\Excepticon\Excepticon.csproj", "{5644E30F-9883-419A-96A8-33F526F3C982}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Excepticon.Examples.AspNetCore", "examples\Excepticon.Examples.AspNetCore\Excepticon.Examples.AspNetCore.csproj", "{3F285EC8-46C8-4E33-9D62-90D5DDD51B42}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Excepticon.Examples.Console", "examples\Excepticon.Examples.Console\Excepticon.Examples.Console.csproj", "{594C2F19-9CD6-47CE-8405-122A324BC00D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Excepticon.Examples.Console", "examples\Excepticon.Examples.Console\Excepticon.Examples.Console.csproj", "{594C2F19-9CD6-47CE-8405-122A324BC00D}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Excepticon.Examples.GenericHost", "examples\Excepticon.Examples.GenericHost\Excepticon.Examples.GenericHost.csproj", "{97DBE054-1D49-48AF-8903-53CF5E2EA4E9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,6 +37,10 @@ Global
 		{594C2F19-9CD6-47CE-8405-122A324BC00D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{594C2F19-9CD6-47CE-8405-122A324BC00D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{594C2F19-9CD6-47CE-8405-122A324BC00D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{97DBE054-1D49-48AF-8903-53CF5E2EA4E9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{97DBE054-1D49-48AF-8903-53CF5E2EA4E9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{97DBE054-1D49-48AF-8903-53CF5E2EA4E9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{97DBE054-1D49-48AF-8903-53CF5E2EA4E9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -42,6 +48,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{3F285EC8-46C8-4E33-9D62-90D5DDD51B42} = {85EC30B1-1D35-44FB-A73A-74880B6648DC}
 		{594C2F19-9CD6-47CE-8405-122A324BC00D} = {85EC30B1-1D35-44FB-A73A-74880B6648DC}
+		{97DBE054-1D49-48AF-8903-53CF5E2EA4E9} = {85EC30B1-1D35-44FB-A73A-74880B6648DC}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {DDC6F45D-2096-4EF1-B02E-9C2166D71D29}

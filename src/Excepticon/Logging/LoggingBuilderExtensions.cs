@@ -1,5 +1,5 @@
 ﻿using System;
-using Excepticon.AspNetCore.Options;
+using Excepticon.Extensions;
 using Excepticon.Options;
 using Excepticon.Services;
 using Microsoft.AspNetCore.Http;
@@ -8,18 +8,18 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Configuration;
 using Microsoft.Extensions.Options;
 
-namespace Excepticon.AspNetCore.Logging
+namespace Excepticon.Logging
 {
     public static class LoggingBuilderExtensions
     {
         public static ILoggingBuilder AddExcepticon(
             this ILoggingBuilder builder) =>
-            builder.AddExcepticon((Action<ExcepticonOptions>) null);
+            AddExcepticon(builder, (Action<ExcepticonOptions>) null);
 
         public static ILoggingBuilder AddExcepticon(
             this ILoggingBuilder builder, 
             string excepticonApiKey) =>
-            builder.AddExcepticon(o => o.ApiKey = excepticonApiKey);
+            AddExcepticon(builder, o => o.ApiKey = excepticonApiKey);
 
         public static ILoggingBuilder AddExcepticon(
             this ILoggingBuilder builder,

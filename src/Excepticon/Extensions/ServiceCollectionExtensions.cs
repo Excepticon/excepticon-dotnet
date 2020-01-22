@@ -1,5 +1,4 @@
 ﻿using System;
-using Excepticon.AspNetCore.Options;
 using Excepticon.Options;
 using Excepticon.Services;
 using Microsoft.Extensions.Configuration;
@@ -7,7 +6,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Options;
 
-namespace Excepticon.AspNetCore.Logging
+namespace Excepticon.Extensions
 {
     public static class ServiceCollectionExtensions
     {
@@ -37,7 +36,7 @@ namespace Excepticon.AspNetCore.Logging
             var section = config.GetSection(sectionName);
             services.Configure<ExcepticonOptions>(section);
 
-            return services.AddExcepticon();
+            return AddExcepticon(services);
         }
 
         public static IServiceCollection AddExcepticon(
@@ -48,7 +47,7 @@ namespace Excepticon.AspNetCore.Logging
             
             services.TryAddSingleton<IOptions<ExcepticonOptions>>(excepticonOptions);
             
-            return services.AddExcepticon();
+            return AddExcepticon(services);
         }
     }
 }

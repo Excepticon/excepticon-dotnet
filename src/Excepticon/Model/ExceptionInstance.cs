@@ -14,11 +14,19 @@ namespace Excepticon.Model
             Source = exception.Source;
             TimeOccurred = DateTimeOffset.UtcNow;
             TargetSite = exception.TargetSite != null ? new TargetSite(exception.TargetSite) : null;
+
+            if (Environment is null)
+            {
+                Environment = new EnvironmentData();
+            }
         }
 
         public ExceptionInstance(Exception exception, HttpContext httpContext) : this(exception)
         {
-            HttpRequest = new HttpRequestData(httpContext);
+            if (httpContext != null)
+            {
+                HttpRequest = new HttpRequestData(httpContext);
+            }
             Environment = new EnvironmentData(httpContext);
         }
 
