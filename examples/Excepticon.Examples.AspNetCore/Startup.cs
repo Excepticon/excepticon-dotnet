@@ -24,36 +24,16 @@ namespace Excepticon.Examples.AspNetCore
         {
             services.AddMvc(option => option.EnableEndpointRouting = false);
 
-            // Add Excepticon to the specified IServiceCollection
-
-            // Option 1 - Provide apiKey directly
-            services.AddExcepticon("{Your ApiKey Here}");
-
-            // Option 2 - Provide IConfiguration
-            //            Looks for a section named "Excepticon" in the registered configuration providers.
-            //            In this example, the section is included in the local.settings.json, but it could 
-            //            be provided from any other configuration provider, such as another config file,
-            //            environment variable, Azure app setting, etc...
-            //services.AddExcepticon(_configuration);
-
-            // Option 3 - Provide IConfiguration and custom section name
-            //services.AddExcepticon(_configuration, "MyExcepticonSettings");
+            // Add Excepticon to the IServiceCollection
+            services.AddExcepticon(_configuration);
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-            }
-
-            // Adds Excepticon to the request execution pipeline
+            // Add Excepticon to the request execution pipeline
             app.UseExcepticon();
 
             app.UseMvc();
-            
-            // Run and navigate to /api/errors to have an error logged to Excepticon.
-            // (Don't forget to set your ApiKey!)
         }
     }
 }
