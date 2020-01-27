@@ -12,7 +12,11 @@ namespace Excepticon
 
         public static IDisposable Init(string apiKey)
         {
-            var options = new ExcepticonOptions(apiKey);
+            return Init(new ExcepticonOptions(apiKey));
+        }
+
+        public static IDisposable Init(ExcepticonOptions options)
+        {
             var exceptionInstancesService = new ExcepticonExceptionInstancesService(options);
             var backgroundWorker = new BackgroundWorker(exceptionInstancesService, options);
             return UseClient(new ExcepticonClient(options, backgroundWorker));

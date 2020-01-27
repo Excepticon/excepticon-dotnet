@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <PackageId>Excepticon.AspNetCore</PackageId>
-    <Version>1.0.0-beta004</Version>
+    <Version>1.0.0-beta005</Version>
     <Authors>Jon Blankenship</Authors>
     <Company>Excepticon</Company>
     <Title>Excepticon.AspNetCore</Title>
