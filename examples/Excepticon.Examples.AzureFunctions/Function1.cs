@@ -1,6 +1,5 @@
 using System;
 using Microsoft.Azure.WebJobs;
-using Microsoft.Azure.WebJobs.Host;
 using Microsoft.Extensions.Logging;
 
 namespace Excepticon.Examples.AzureFunctions
@@ -12,7 +11,7 @@ namespace Excepticon.Examples.AzureFunctions
         {
             log.LogInformation($"C# Timer trigger function executed at: {DateTime.Now}");
 
-            using (ExcepticonSdk.Init("CuDC2IVMs+IgTa4+lM6abtQF14IbYj8gy6LEEkQAsyY="))
+            using (ExcepticonSdk.Init("{Your ApiKey Here"))
             {
                 try
                 {
