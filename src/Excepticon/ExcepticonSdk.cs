@@ -22,6 +22,8 @@ namespace Excepticon
             return UseClient(new ExcepticonClient(options, backgroundWorker));
         }
 
+        public static void CaptureException(Exception ex) => _client.CaptureException(ex);
+
         public static Task FlushAsync(TimeSpan timeout) => _client.FlushAsync(timeout);
 
         internal static IDisposable UseClient(ExcepticonClient client)
