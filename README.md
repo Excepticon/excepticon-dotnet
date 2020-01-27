@@ -5,6 +5,7 @@ Excepticon SDK for .NET
 
 | Package | Downloads | Nuget Pre-release | Nuget Stable |
 | ---     | ---       | ---               | ---          |
+| [Excepticon](https://www.nuget.org/packages/Excepticon) | ![Nuget](https://img.shields.io/nuget/dt/Excepticon) | ![Nuget](https://img.shields.io/nuget/vpre/Excepticon) |  |
 | [Excepticon.AspNetCore](https://www.nuget.org/packages/Excepticon.AspNetCore) | ![Nuget](https://img.shields.io/nuget/dt/Excepticon.AspNetCore) | ![Nuget](https://img.shields.io/nuget/vpre/Excepticon.AspNetCore) |  |
 
 ## About
