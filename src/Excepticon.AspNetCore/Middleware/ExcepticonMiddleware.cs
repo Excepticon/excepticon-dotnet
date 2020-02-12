@@ -37,16 +37,15 @@ namespace Excepticon.AspNetCore.Middleware
             if (_options.FlushOnCompletedRequest)
             {
                 context.Response.OnCompleted(async () =>
-                    {
-                        await excepticonClient.FlushAsync(_options.FlushTimeout).ConfigureAwait(false);
-                    });
+                {
+                    await excepticonClient.FlushAsync(_options.FlushTimeout).ConfigureAwait(false);
+                });
             }
 
             try
             {
                 await _next(context).ConfigureAwait(false);
 
-                // When an exception was handled by other component (i.e: UseExceptionHandler feature).
                 var exceptionFeature = context.Features.Get<IExceptionHandlerFeature>();
                 if (exceptionFeature?.Error != null)
                 {

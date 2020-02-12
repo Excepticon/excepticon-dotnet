@@ -1,5 +1,4 @@
 ﻿using Excepticon.AspNetCore.Middleware;
-using Excepticon.AspNetCore.Options;
 using Excepticon.Options;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
@@ -13,7 +12,7 @@ namespace Excepticon.AspNetCore
             this IApplicationBuilder appBuilder)
         {
             var options = appBuilder.ApplicationServices.GetService<IOptions<ExcepticonOptions>>();
-            
+
             appBuilder.UseMiddleware(typeof(ExcepticonMiddleware), options);
         }
     }

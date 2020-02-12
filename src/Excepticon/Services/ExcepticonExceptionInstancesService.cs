@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
@@ -9,6 +10,7 @@ using Newtonsoft.Json;
 
 namespace Excepticon.Services
 {
+    [EditorBrowsable(EditorBrowsableState.Never)]
     public class ExcepticonExceptionInstancesService : IExcepticonExceptionInstancesService
     {
         private readonly HttpClient _httpClient;

@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Concurrent;
+using System.ComponentModel;
 using System.Diagnostics;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Excepticon.Model;
@@ -8,6 +10,7 @@ using Excepticon.Options;
 
 namespace Excepticon.Services
 {
+    [EditorBrowsable(EditorBrowsableState.Never)]
     public class BackgroundWorker : IBackgroundWorker, IDisposable
     {
         private readonly ExcepticonOptions _options;
@@ -131,7 +134,6 @@ namespace Excepticon.Services
                     {
                         Debug.Assert(shutdownRequested);
 
-                        // Empty queue. Exit.
                         return;
                     }
                 }
@@ -149,15 +151,7 @@ namespace Excepticon.Services
 
         public async Task FlushAsync(TimeSpan timeout)
         {
-            if (_disposed)
-            {
-                return;
-            }
-
-            if (_queue.Count == 0)
-            {
-                return;
-            }
+            if (_disposed || !_queue.Any()) return;
 
             // Start timer from here.
             var timeoutSource = new CancellationTokenSource();

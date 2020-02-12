@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Threading.Tasks;
 using Excepticon.AspNetCore.Options;
 using Excepticon.Model;
@@ -8,6 +9,8 @@ using Microsoft.AspNetCore.Http;
 
 namespace Excepticon.AspNetCore.Middleware
 {
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    [Obsolete]
     public class ExceptionHandlingMiddleware
     {
         private readonly RequestDelegate _next;

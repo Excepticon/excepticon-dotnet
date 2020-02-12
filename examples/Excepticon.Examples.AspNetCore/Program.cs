@@ -1,5 +1,7 @@
-﻿using Microsoft.AspNetCore;
+﻿using Excepticon.AspNetCore;
+using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Configuration;
 
 namespace Excepticon.Examples.AspNetCore
 {
@@ -12,6 +14,11 @@ namespace Excepticon.Examples.AspNetCore
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
-                .UseStartup<Startup>();
+                .ConfigureAppConfiguration(config =>
+                {
+                    config.AddJsonFile("local.settings.json", true, true);
+                })
+                .UseStartup<Startup>()
+                .UseExcepticon();
     }
 }
