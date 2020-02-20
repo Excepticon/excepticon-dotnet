@@ -120,8 +120,9 @@ namespace Excepticon.Services
                         {
                             return;
                         }
-                        catch (Exception)
+                        catch (Exception e)
                         {
+                            Debug.WriteLine(e.Message);
                         }
                         finally
                         {

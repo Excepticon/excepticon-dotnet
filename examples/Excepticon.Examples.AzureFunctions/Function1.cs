@@ -11,7 +11,7 @@ namespace Excepticon.Examples.AzureFunctions
         {
             log.LogInformation($"C# Timer trigger function executed at: {DateTime.Now}");
 
-            using (ExcepticonSdk.Init("{Your ApiKey Here"))
+            using (ExcepticonSdk.Init("{Your ApiKey Here}"))
             {
                 try
                 {

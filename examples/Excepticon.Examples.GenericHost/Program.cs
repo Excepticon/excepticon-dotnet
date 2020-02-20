@@ -22,7 +22,7 @@ namespace Excepticon.Examples.GenericHost
                 {
                     l.AddConfiguration(c.Configuration);
                     l.AddConsole();
-                    l.AddExcepticon();
+                    l.AddExcepticon("{Your ApiKey Here");
                 })
                 .UseConsoleLifetime()
                 .Build()

@@ -16,6 +16,8 @@ Excepticon SDK for .NET
 
 Here you'll find a basic introduction to the Excepticon SDK and it's API, but for more detailed information, please take a look at the Excepticon [documentation](https://docs.excepticon.io).
 
+You can also check out the examples [here](https://github.com/Excepticon/excepticon-dotnet/tree/master/examples) to see how Excepticon can be integrated into different project types.
+
 ## Usage
 
 ### Getting Started
@@ -27,7 +29,7 @@ Here you'll find a basic introduction to the Excepticon SDK and it's API, but fo
 
 ### Basic Usage
 
-`TODO`
+The most basic way to use Excepticon is to 
 
 ### ASP.NET Core
 
