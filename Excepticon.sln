@@ -17,7 +17,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Excepticon.Examples.Generic
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Excepticon.Examples.AzureFunctions", "examples\Excepticon.Examples.AzureFunctions\Excepticon.Examples.AzureFunctions.csproj", "{308CB47F-C8F6-4FDB-AEB9-2FD05675D54F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Excepticon.Examples.Wpf", "Excepticon.Examples.Wpf\Excepticon.Examples.Wpf.csproj", "{08F1E22F-3DD6-423A-BDD9-543FE53B739F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Excepticon.Examples.Wpf", "examples\Excepticon.Examples.Wpf\Excepticon.Examples.Wpf.csproj", "{08F1E22F-3DD6-423A-BDD9-543FE53B739F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
