@@ -6,7 +6,7 @@ namespace Excepticon.Examples.Console
     {
         static void Main(string[] args)
         {
-            using (ExcepticonSdk.Init("{Your ApiKey Here"))
+            using (ExcepticonSdk.Init("{Your ApiKey Here}"))
             {
                 throw new ApplicationException("This error will be sent to Excepticon.");
             }

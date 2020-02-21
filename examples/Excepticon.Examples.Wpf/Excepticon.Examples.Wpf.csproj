@@ -127,7 +127,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\src\Excepticon\Excepticon.csproj">
+    <ProjectReference Include="..\..\src\Excepticon\Excepticon.csproj">
       <Project>{5644e30f-9883-419a-96a8-33f526f3c982}</Project>
       <Name>Excepticon</Name>
     </ProjectReference>
