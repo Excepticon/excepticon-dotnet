@@ -1,12 +1,15 @@
+
+
 # excepticon-dotnet
+
 Excepticon SDK for .NET
 
 [![Build Status](https://dev.azure.com/Excepticon/excepticon-dotnet/_apis/build/status/excepticon-dotnet-ASP.NET-CI?branchName=master)](https://dev.azure.com/Excepticon/excepticon-dotnet/_build/latest?definitionId=1&branchName=master)
 
 | Package | Target | Downloads | Nuget Pre-release | Nuget Stable |
 | ---     | ---       | ---               | ---          | ---     |
-| [Excepticon](https://www.nuget.org/packages/Excepticon) | .NET Standard 2.0 | ![Nuget](https://img.shields.io/nuget/dt/Excepticon) | ![Nuget](https://img.shields.io/nuget/vpre/Excepticon) |  |
-| [Excepticon.AspNetCore](https://www.nuget.org/packages/Excepticon.AspNetCore) | .NET Standard 2.0 | ![Nuget](https://img.shields.io/nuget/dt/Excepticon.AspNetCore) | ![Nuget](https://img.shields.io/nuget/vpre/Excepticon.AspNetCore) |  |
+| [Excepticon](https://www.nuget.org/packages/Excepticon) | .NET Standard 2.0 | ![Nuget](https://img.shields.io/nuget/dt/Excepticon) | ![Nuget](https://img.shields.io/nuget/vpre/Excepticon) | ![Nuget](https://img.shields.io/nuget/v/Excepticon) |
+| [Excepticon.AspNetCore](https://www.nuget.org/packages/Excepticon.AspNetCore) | .NET Standard 2.0 | ![Nuget](https://img.shields.io/nuget/dt/Excepticon.AspNetCore) | ![Nuget](https://img.shields.io/nuget/v/Excepticon.AspNetCore) | ![Nuget](https://img.shields.io/nuget/v/Excepticon.AspNetCore) |
 
 
 
@@ -18,7 +21,7 @@ Excepticon SDK for .NET
 
 ## Documentation
 
-Here you'll find a basic introduction to the Excepticon SDK and it's API, but for more detailed information, please take a look at the Excepticon [documentation](https://docs.excepticon.io).
+Here you'll find a basic introduction to the Excepticon SDK and its API, but for more detailed information, please take a look at the Excepticon [documentation](https://docs.excepticon.io).
 
 You can also check out the examples [here](https://github.com/Excepticon/excepticon-dotnet/tree/master/examples) to see how Excepticon can be integrated into different project types.
 
