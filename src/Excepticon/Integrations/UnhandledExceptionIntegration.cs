@@ -8,37 +8,33 @@ using Excepticon.Services;
 
 namespace Excepticon.Integrations
 {
-    internal class AppDomainUnhandledExceptionIntegration : ISdkIntegration
+    internal class UnhandledExceptionIntegration : ISdkIntegration
     {
         private readonly IAppDomain _appDomain;
         private IExcepticonClient _client;
 
-        internal AppDomainUnhandledExceptionIntegration(IAppDomain appDomain = null) => _appDomain = appDomain ?? AppDomainAdapter.Instance;
+        internal UnhandledExceptionIntegration(IAppDomain appDomain = null) => _appDomain = appDomain ?? AppDomainAdapter.Instance;
 
         public void Register(IExcepticonClient client, ExcepticonOptions options)
         {
             _client = client;
-            _appDomain.UnhandledException += Handle;
+            _appDomain.UnhandledException += OnUnhandledException;
         }
 
         public void Unregister(IExcepticonClient client)
         {
-            _appDomain.UnhandledException -= Handle;
+            _appDomain.UnhandledException -= OnUnhandledException;
             _client = null;
         }
 
         [HandleProcessCorruptedStateExceptions, SecurityCritical]
-        internal void Handle(object sender, UnhandledExceptionEventArgs e)
+        internal void OnUnhandledException(object sender, UnhandledExceptionEventArgs e)
         {
             if (e.ExceptionObject is Exception ex)
-            {
                 _client?.CaptureException(ex);
-            }
 
             if (e.IsTerminating)
-            {
                 (_client as IDisposable)?.Dispose();
-            }
         }
     }
 }

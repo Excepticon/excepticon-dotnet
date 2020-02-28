@@ -1,7 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Threading.Tasks;
-using Excepticon.AspNetCore.Options;
 using Excepticon.Model;
 using Excepticon.Options;
 using Excepticon.Services;
@@ -34,8 +33,7 @@ namespace Excepticon.AspNetCore.Middleware
             {
                 await HandleExceptionAsync(context, ex);
 
-                if (!_options.ShouldSwallowExceptions)
-                    throw;
+                if (!_options.ShouldSwallowExceptions) throw;
             }
         }
 

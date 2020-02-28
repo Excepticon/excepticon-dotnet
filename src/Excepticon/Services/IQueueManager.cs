@@ -6,12 +6,10 @@ using Excepticon.Model;
 namespace Excepticon.Services
 {
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public interface IBackgroundWorker
+    public interface IQueueManager
     {
         bool EnqueueExceptionInstance(ExceptionInstance instance);
 
-        Task FlushAsync(TimeSpan timeout);
-
-        int QueuedItems { get; }
+        Task FlushQueueAsync(TimeSpan timeout);
     }
 }

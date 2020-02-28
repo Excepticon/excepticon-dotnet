@@ -17,7 +17,7 @@ namespace Excepticon.Extensions
 
             services.TryAddSingleton<IExcepticonExceptionInstancesService, ExcepticonExceptionInstancesService>();
             services.TryAddSingleton<IExcepticonClient, ExcepticonClient>();
-            services.TryAddSingleton<IBackgroundWorker, BackgroundWorker>();
+            services.TryAddSingleton<IQueueManager, QueueManager>();
 
             services.TryAddSingleton<Func<IExcepticonClient>>(c =>
             {

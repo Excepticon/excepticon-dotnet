@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Excepticon.Integrations;
 using Excepticon.Model;
@@ -13,65 +14,45 @@ namespace Excepticon.Services
         private readonly ExcepticonOptions _options;
         private readonly List<ISdkIntegration> _integrations;
 
-        internal IBackgroundWorker Worker { get; }
+        internal IQueueManager QueueManager { get; }
 
-        public ExcepticonClient(ExcepticonOptions options, IBackgroundWorker worker)
+        public ExcepticonClient(ExcepticonOptions options, IQueueManager queueManager)
         {
-            Worker = worker ?? throw new ArgumentNullException(nameof(worker));
+            QueueManager = queueManager ?? throw new ArgumentNullException(nameof(queueManager));
             _options = options ?? throw new ArgumentNullException(nameof(options));
 
             _integrations = options.Integrations;
-            if (_integrations?.Count > 0)
-            {
+            if (_integrations?.Any() ?? false)
                 foreach (var integration in _integrations)
-                {
                     integration.Register(this, options);
-                }
-            }
         }
 
-        public void CaptureException(Exception ex)
-        {
-            var instance = new ExceptionInstance(ex);
-
-            CaptureException(instance);
-        }
+        public void CaptureException(Exception ex) => CaptureException(new ExceptionInstance(ex));
 
         public void CaptureException(ExceptionInstance instance)
         {
             if (_disposed)
-            {
                 throw new ObjectDisposedException(nameof(ExcepticonClient));
-            }
 
             DoSendExceptionInstance(instance);
         }
 
-        public Task FlushAsync(TimeSpan timeout) => Worker.FlushAsync(timeout);
+        public Task FlushAsync(TimeSpan timeout) => QueueManager.FlushQueueAsync(timeout);
 
-        private void DoSendExceptionInstance(ExceptionInstance instance)
-        {
-            Worker.EnqueueExceptionInstance(instance);
-        }
+        private void DoSendExceptionInstance(ExceptionInstance instance) => QueueManager.EnqueueExceptionInstance(instance);
 
         public void Dispose()
         {
             if (_disposed)
-            {
                 return;
-            }
             
             _disposed = true;
 
             if (_integrations?.Count > 0)
-            {
                 foreach (var integration in _integrations)
-                {
                     integration.Unregister(this);
-                }
-            }
 
-            (Worker as IDisposable)?.Dispose();
+            (QueueManager as IDisposable)?.Dispose();
         }
     }
 }

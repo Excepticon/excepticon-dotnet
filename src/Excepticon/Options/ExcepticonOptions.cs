@@ -10,8 +10,8 @@ namespace Excepticon.Options
         {
             Integrations = new List<ISdkIntegration>
             {
-                new AppDomainUnhandledExceptionIntegration(),
-                new AppDomainProcessExitIntegration()
+                new UnhandledExceptionIntegration(),
+                new ProcessExitIntegration()
             };
         }
 

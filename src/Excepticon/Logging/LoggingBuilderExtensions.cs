@@ -39,7 +39,7 @@ namespace Excepticon.Logging
             builder.Services.AddSingleton<IConfigureOptions<ExcepticonOptions>, ExcepticonLoggingOptionsSetup>();
             builder.Services.AddSingleton<ILoggerProvider, ExcepticonLoggerProvider>();
             builder.Services.AddSingleton<IExcepticonClient, ExcepticonClient>();
-            builder.Services.AddSingleton<IBackgroundWorker, BackgroundWorker>();
+            builder.Services.AddSingleton<IQueueManager, QueueManager>();
 
             builder.Services.AddExcepticon();
             return builder;

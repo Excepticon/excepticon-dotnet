@@ -48,9 +48,7 @@ namespace Excepticon.AspNetCore.Middleware
 
                 var exceptionFeature = context.Features.Get<IExceptionHandlerFeature>();
                 if (exceptionFeature?.Error != null)
-                {
                     CaptureException(exceptionFeature.Error);
-                }
             }
             catch (Exception e)
             {

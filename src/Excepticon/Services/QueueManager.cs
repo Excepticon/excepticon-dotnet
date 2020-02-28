@@ -11,8 +11,9 @@ using Excepticon.Options;
 namespace Excepticon.Services
 {
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public class BackgroundWorker : IBackgroundWorker, IDisposable
+    public class QueueManager : IQueueManager, IDisposable
     {
+        private readonly IExcepticonExceptionInstancesService _excepticonExceptionInstancesService;
         private readonly ExcepticonOptions _options;
         private volatile bool _disposed;
         private readonly CancellationTokenSource _shutdownSource;
@@ -22,62 +23,42 @@ namespace Excepticon.Services
 
         private event EventHandler OnFlushObjectReceived;
 
-        public BackgroundWorker(
+        public QueueManager(
             IExcepticonExceptionInstancesService excepticonExceptionInstancesService,
             ExcepticonOptions options,
             CancellationTokenSource shutdownSource = null,
             ConcurrentQueue<ExceptionInstance> queue = null)
         {
+            _excepticonExceptionInstancesService = excepticonExceptionInstancesService ?? throw new ArgumentNullException(nameof(excepticonExceptionInstancesService));
             _options = options ?? throw new ArgumentNullException(nameof(options));
-
-            _queuedEventSemaphore = new SemaphoreSlim(0, _options.MaxQueueItems);
-
             _shutdownSource = shutdownSource ?? new CancellationTokenSource();
             _queue = queue ?? new ConcurrentQueue<ExceptionInstance>();
 
-            WorkerTask = Task.Run(
-                async () => await WorkerAsync(
-                        _queue,
-                        _options,
-                        excepticonExceptionInstancesService,
-                        _queuedEventSemaphore,
-                        _shutdownSource.Token)
-                    .ConfigureAwait(false));
+            _queuedEventSemaphore = new SemaphoreSlim(0, _options.MaxQueueItems);
+            
+            WorkerTask = Task.Run(async () => await WorkerAsync(_shutdownSource.Token).ConfigureAwait(false));
         }
-
-        public int QueuedItems { get; }
-
-        internal Task WorkerTask { get; }
 
         public bool EnqueueExceptionInstance(ExceptionInstance instance)
         {
-            if (_disposed)
+            if (_disposed) throw new ObjectDisposedException(nameof(QueueManager));
+
+            if (instance == null) return false;
+
+            if (Interlocked.Increment(ref _currentItems) <= _options.MaxQueueItems)
             {
-                throw new ObjectDisposedException(nameof(BackgroundWorker));
+                _queue.Enqueue(instance);
+                _queuedEventSemaphore.Release();
+                return true;
             }
 
-            if (instance == null)
-            {
-                return false;
-            }
-
-            if (Interlocked.Increment(ref _currentItems) > _options.MaxQueueItems)
-            {
-                Interlocked.Decrement(ref _currentItems);
-                return false;
-            }
-
-            _queue.Enqueue(instance);
-            _queuedEventSemaphore.Release();
-            return true;
+            Interlocked.Decrement(ref _currentItems);
+            return false;
         }
 
-        private async Task WorkerAsync(
-            ConcurrentQueue<ExceptionInstance> queue,
-            ExcepticonOptions options,
-            IExcepticonExceptionInstancesService exceptionInstancesExcepticonExceptionInstancesService,
-            SemaphoreSlim queuedEventSemaphore,
-            CancellationToken cancellation)
+        private Task WorkerTask { get; }
+
+        private async Task WorkerAsync(CancellationToken cancellation)
         {
             var shutdownTimeout = new CancellationTokenSource();
             var shutdownRequested = false;
@@ -86,34 +67,26 @@ namespace Excepticon.Services
             {
                 while (!shutdownTimeout.IsCancellationRequested)
                 {
-                    // If the cancellation was signaled,
-                    // set the latest we can keep reading off of the queue (while there's still stuff to read)
-                    // No longer synchronized with queuedEventSemaphore (Enqueue will throw object disposed),
-                    // run until the end of the queue or shutdownTimeout
                     if (!shutdownRequested)
                     {
                         try
                         {
-                            await queuedEventSemaphore.WaitAsync(cancellation).ConfigureAwait(false);
+                            await _queuedEventSemaphore.WaitAsync(cancellation).ConfigureAwait(false);
                         }
-                        // Cancellation requested, scheduled shutdown but continue in case there are more items
                         catch (OperationCanceledException)
                         {
-                            if (options.ShutdownTimeout == TimeSpan.Zero)
-                            {
-                                return;
-                            }
+                            if (_options.ShutdownTimeout == TimeSpan.Zero) return;
 
-                            shutdownTimeout.CancelAfter(options.ShutdownTimeout);
+                            shutdownTimeout.CancelAfter(_options.ShutdownTimeout);
                             shutdownRequested = true;
                         }
                     }
 
-                    if (queue.TryPeek(out var exceptionInstance))
+                    if (_queue.TryPeek(out var exceptionInstance))
                     {
                         try
                         {
-                            var task = exceptionInstancesExcepticonExceptionInstancesService.PostExceptionInstance(exceptionInstance, _options.ApiKey);
+                            var task = _excepticonExceptionInstancesService.PostExceptionInstance(exceptionInstance, _options.ApiKey);
                             await task.ConfigureAwait(false);
                         }
                         catch (OperationCanceledException)
@@ -126,17 +99,12 @@ namespace Excepticon.Services
                         }
                         finally
                         {
-                            queue.TryDequeue(out _);
+                            _queue.TryDequeue(out exceptionInstance);
                             Interlocked.Decrement(ref _currentItems);
                             OnFlushObjectReceived?.Invoke(exceptionInstance, EventArgs.Empty);
                         }
                     }
-                    else
-                    {
-                        Debug.Assert(shutdownRequested);
-
-                        return;
-                    }
+                    else return;
                 }
             }
             catch (Exception e)
@@ -146,15 +114,14 @@ namespace Excepticon.Services
             }
             finally
             {
-                queuedEventSemaphore.Dispose();
+                _queuedEventSemaphore.Dispose();
             }
         }
 
-        public async Task FlushAsync(TimeSpan timeout)
+        public async Task FlushQueueAsync(TimeSpan timeout)
         {
             if (_disposed || !_queue.Any()) return;
 
-            // Start timer from here.
             var timeoutSource = new CancellationTokenSource();
             timeoutSource.CancelAfter(timeout);
             var flushSuccessSource = new CancellationTokenSource();
@@ -167,39 +134,31 @@ namespace Excepticon.Services
             var counter = 0;
             var depth = int.MaxValue;
 
-            void EventFlushedCallback(object objProcessed, EventArgs _)
+            void EventFlushedCallback(object objProcessed, EventArgs eventArgs)
             {
-                // ReSharper disable once AccessToModifiedClosure
                 if (Interlocked.Increment(ref counter) >= depth)
                 {
                     try
                     {
-                        // ReSharper disable once AccessToDisposedClosure
                         flushSuccessSource.Cancel();
                     }
-                    catch // Timeout or Shutdown might have been called so this token was disposed.
+                    catch
                     {
-                    } // Flush will release when timeout is hit.
+                        // ignored
+                    }
                 }
             }
 
-            OnFlushObjectReceived += EventFlushedCallback; // Started counting events
+            OnFlushObjectReceived += EventFlushedCallback;
             try
             {
                 var trackedDepth = _queue.Count;
-                if (trackedDepth == 0) // now we're subscribed and counting, make sure it's not already empty.
-                {
-                    return;
-                }
+                if (trackedDepth == 0) return;
 
                 Interlocked.Exchange(ref depth, trackedDepth);
 
-                if (counter >= depth) // When the worker finished flushing before we set the depth
-                {
-                    return;
-                }
+                if (counter >= depth) return;
 
-                // Await until event is flushed or one of the tokens triggers
                 await Task.Delay(timeout, timeoutWithShutdown.Token).ConfigureAwait(false);
             }
             catch (OperationCanceledException)
@@ -214,19 +173,12 @@ namespace Excepticon.Services
 
         public void Dispose()
         {
-            if (_disposed)
+            if (!_disposed)
             {
-                return;
+                _disposed = true;
+                _shutdownSource.Cancel();
+                WorkerTask.Wait(_options.ShutdownTimeout);
             }
-
-            _disposed = true;
-
-            // Immediately requests the Worker to stop.
-            _shutdownSource.Cancel();
-
-            // If there's anything in the queue, it'll keep running until 'shutdownTimeout' is reached
-            // If the queue is empty it will quit immediately
-            WorkerTask.Wait(_options.ShutdownTimeout);
         }
     }
 }
