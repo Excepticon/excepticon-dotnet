@@ -3,6 +3,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Excepticon.Options;
 using Excepticon.Services;
+using Microsoft.AspNetCore.Http;
 
 namespace Excepticon
 {
@@ -20,6 +21,8 @@ namespace Excepticon
         }
 
         public static void CaptureException(Exception ex) => _client.CaptureException(ex);
+
+        public static void CaptureException(Exception ex, HttpContext httpContext) => _client.CaptureException(ex, httpContext);
 
         public static Task FlushAsync(TimeSpan timeout) => _client.FlushAsync(timeout);
 

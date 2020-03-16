@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Excepticon.Integrations;
 using Excepticon.Model;
 using Excepticon.Options;
+using Microsoft.AspNetCore.Http;
 
 namespace Excepticon.Services
 {
@@ -28,6 +29,8 @@ namespace Excepticon.Services
         }
 
         public void CaptureException(Exception ex) => CaptureException(new ExceptionInstance(ex));
+
+        public void CaptureException(Exception ex, HttpContext httpContext) => CaptureException(new ExceptionInstance(ex, httpContext));
 
         public void CaptureException(ExceptionInstance instance)
         {
