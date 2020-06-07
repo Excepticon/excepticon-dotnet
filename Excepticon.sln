@@ -19,7 +19,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Excepticon.Examples.AzureFu
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Excepticon.Examples.Wpf", "examples\Excepticon.Examples.Wpf\Excepticon.Examples.Wpf.csproj", "{08F1E22F-3DD6-423A-BDD9-543FE53B739F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Excepticon.Examples.Wpf.NetCore", "Excepticon.Examples.Wpf.NetCore\Excepticon.Examples.Wpf.NetCore.csproj", "{242AE567-FFB7-4D11-AEFE-31D259ED2262}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Excepticon.Examples.Wpf.NetCore", "examples\Excepticon.Examples.Wpf.NetCore\Excepticon.Examples.Wpf.NetCore.csproj", "{2EBF0A09-1D68-47AC-A1BF-4C143F0F4CE4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -55,10 +55,10 @@ Global
 		{08F1E22F-3DD6-423A-BDD9-543FE53B739F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{08F1E22F-3DD6-423A-BDD9-543FE53B739F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{08F1E22F-3DD6-423A-BDD9-543FE53B739F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{242AE567-FFB7-4D11-AEFE-31D259ED2262}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{242AE567-FFB7-4D11-AEFE-31D259ED2262}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{242AE567-FFB7-4D11-AEFE-31D259ED2262}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{242AE567-FFB7-4D11-AEFE-31D259ED2262}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2EBF0A09-1D68-47AC-A1BF-4C143F0F4CE4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2EBF0A09-1D68-47AC-A1BF-4C143F0F4CE4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2EBF0A09-1D68-47AC-A1BF-4C143F0F4CE4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2EBF0A09-1D68-47AC-A1BF-4C143F0F4CE4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -69,7 +69,7 @@ Global
 		{97DBE054-1D49-48AF-8903-53CF5E2EA4E9} = {85EC30B1-1D35-44FB-A73A-74880B6648DC}
 		{308CB47F-C8F6-4FDB-AEB9-2FD05675D54F} = {85EC30B1-1D35-44FB-A73A-74880B6648DC}
 		{08F1E22F-3DD6-423A-BDD9-543FE53B739F} = {85EC30B1-1D35-44FB-A73A-74880B6648DC}
-		{242AE567-FFB7-4D11-AEFE-31D259ED2262} = {85EC30B1-1D35-44FB-A73A-74880B6648DC}
+		{2EBF0A09-1D68-47AC-A1BF-4C143F0F4CE4} = {85EC30B1-1D35-44FB-A73A-74880B6648DC}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {DDC6F45D-2096-4EF1-B02E-9C2166D71D29}

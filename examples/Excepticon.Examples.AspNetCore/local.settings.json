@@ -1,5 +1,6 @@
 {
   "Excepticon": {
-    "ApiKey": "{Your ApiKey Here}"
+    "ApiKey": "{Your ApiKey Here}",
+    "ExcludedExceptionTypes": "DivideByZeroException"
   } 
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -36,6 +37,12 @@ namespace Excepticon.Services
         {
             if (_disposed)
                 throw new ObjectDisposedException(nameof(ExcepticonClient));
+
+            if (_options.ExcludedExceptionTypeList.Contains(instance.Type, StringComparer.InvariantCultureIgnoreCase) ||
+                _options.ExcludedExceptionTypeList.Contains(instance.FullyQualifiedType, StringComparer.InvariantCultureIgnoreCase))
+            {
+                return;
+            }
 
             DoSendExceptionInstance(instance);
         }

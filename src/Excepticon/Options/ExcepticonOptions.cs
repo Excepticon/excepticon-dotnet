@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Excepticon.Integrations;
 
 namespace Excepticon.Options
@@ -34,6 +35,10 @@ namespace Excepticon.Options
 
         public string Url { get; set; } = "https://api.excepticon.io/";
 
+        public string ExcludedExceptionTypes { get; set; }
+
         internal List<ISdkIntegration> Integrations { get; set; }
+
+        public List<string> ExcludedExceptionTypeList => ExcludedExceptionTypes?.Split(';').ToList() ?? new List<string>();
     }
 }
